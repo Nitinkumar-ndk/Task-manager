@@ -13,6 +13,12 @@ body {
   align-items: center;
   min-height: 100vh;
   padding: 1rem;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+  background: #111827;
+  color: #f9fafb;
 }
 
 .container {
@@ -21,8 +27,12 @@ body {
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   animation: fadeIn 0.8s ease-in-out;
+}
+
+body.dark .container {
+  background: #1f2937;
 }
 
 @keyframes fadeIn {
@@ -38,20 +48,22 @@ h1 {
 
 .input-group {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 1.2rem;
 }
 
-input[type="text"] {
-  flex: 1;
+input[type="text"],
+input[type="date"],
+select {
   padding: 0.6rem 0.8rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
-  transition: border 0.2s ease;
+  flex: 1;
 }
 
-input[type="text"]:focus {
+input:focus, select:focus {
   border-color: #4f46e5;
   outline: none;
 }
@@ -74,9 +86,10 @@ button:hover {
 
 .filters {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 1.5rem;
+  align-items: center;
 }
 
 .filters button {
@@ -86,6 +99,13 @@ button:hover {
 
 .filters button:hover {
   background-color: #c7d2fe;
+}
+
+#searchInput {
+  flex: 1;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
 #taskList {
@@ -100,14 +120,31 @@ button:hover {
   border-radius: 8px;
   margin-bottom: 0.6rem;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   animation: slideIn 0.3s ease;
+}
+
+body.dark #taskList li {
+  background: #374151;
+  border-color: #4b5563;
 }
 
 @keyframes slideIn {
   from { opacity: 0; transform: translateX(-10px); }
   to { opacity: 1; transform: translateX(0); }
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
 }
 
 #taskList li.completed span {
@@ -117,7 +154,6 @@ button:hover {
 }
 
 #taskList li input[type="checkbox"] {
-  margin-right: 10px;
   transform: scale(1.2);
   cursor: pointer;
 }
@@ -127,10 +163,23 @@ button:hover {
   padding: 0.4rem 0.7rem;
   font-size: 0.9rem;
   border-radius: 6px;
+  margin-left: auto;
 }
 
 #taskList li button:hover {
   background-color: #dc2626;
+}
+
+.priority-low span::before {
+  content: \"🟢 \";
+}
+
+.priority-medium span::before {
+  content: \"🟡 \";
+}
+
+.priority-high span::before {
+  content: \"🔴 \";
 }
 
 #pendingCount {
@@ -138,4 +187,26 @@ button:hover {
   text-align: center;
   font-weight: 600;
   color: #1f2937;
+}
+
+body.dark #pendingCount {
+  color: #f9fafb;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+#darkModeToggle {
+  display: block;
+  margin: 1rem auto 0 auto;
+  background: #111827;
+  color: #fff;
+}
+
+body.dark #darkModeToggle {
+  background: #f9fafb;
+  color: #111827;
 }

@@ -7,12 +7,17 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <div class="container">
     <h1>📝 Task Manager</h1>
 
     <div class="input-group">
       <input id="taskInput" type="text" placeholder="Add a new task..." />
+      <input id="dueDateInput" type="date" />
+      <select id="priorityInput">
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+      </select>
       <button onclick="addTask()">Add</button>
     </div>
 
@@ -20,13 +25,21 @@
       <button onclick="setFilter('all')">All</button>
       <button onclick="setFilter('pending')">Pending</button>
       <button onclick="setFilter('completed')">Completed</button>
+      <input id="searchInput" type="text" placeholder="Search tasks..." oninput="renderTasks()" />
     </div>
 
     <ul id="taskList"></ul>
 
+    <div class="controls">
+      <button onclick="completeAll()">Mark All Completed</button>
+      <button onclick="clearCompleted()">Clear Completed</button>
+    </div>
+
     <p id="pendingCount">Pending Tasks: 0</p>
+    <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
